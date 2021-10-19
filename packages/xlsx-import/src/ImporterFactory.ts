@@ -1,5 +1,5 @@
-import {Buffer, Workbook} from 'exceljs';
-import { IImporter } from './IImporter';
+import { Workbook } from 'exceljs';
+import IImporterLegacy, { IImporter } from './IImporter';
 import ImporterLegacy, { Importer } from './Importer';
 
 export class ImporterFactory {
@@ -8,14 +8,6 @@ export class ImporterFactory {
         await wb.xlsx.readFile(path);
 
         return new Importer(wb);
-    }
-
-    public async fromBuffer(buffer: Buffer): Promise<IImporter>{
-        const wb = new Workbook();
-        await wb.xlsx.load(buffer);
-
-        return new Importer(wb)
-
     }
 }
 
